@@ -3,16 +3,15 @@ import { Suspense } from "react";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
-export const dynamic = 'force-dynamic';
+
 
 const Generate = () => {
-  const searchParams = useSearchParams();
+
 
   const [links, setLinks] = useState([{ link: "", linktext: "" }]);
-  const [handle, setHandle] = useState(searchParams.get("handle") || "");
+  const [handle, setHandle] = useState("");
   const [pic, setPic] = useState("");
   const [desc, setDesc] = useState("");
 
@@ -56,7 +55,7 @@ const Generate = () => {
     } catch (err) {
       toast.error("Something went wrong!");
     }
-  };
+  }
 
   return (
     <Suspense fallback={<p>Loading...</p>}>
@@ -163,5 +162,7 @@ const Generate = () => {
   );
 };
 
-export default Generate;
 
+
+
+export default Generate;
