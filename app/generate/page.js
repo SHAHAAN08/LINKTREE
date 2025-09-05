@@ -12,11 +12,13 @@ const Generate = () => {
   const [pic, setPic] = useState("")
   const [desc, setDesc] = useState("")
 
-  const handleChange = (index, link, linktext) => {
+  // Corrected handleChange function
+  const handleChange = (index, e) => {
+    const { name, value } = e.target
     setLinks((initialLinks) => {
-      return initialLinks.map((item, i) =>
-        i === index ? { link, linktext } : item
-      )
+      const newLinks = [...initialLinks]
+      newLinks[index][name] = value
+      return newLinks
     })
   }
 
@@ -84,19 +86,17 @@ const Generate = () => {
             {links.map((item, index) => (
               <div key={index} className="flex flex-col md:flex-row gap-2 my-2">
                 <input
+                  name="linktext"
                   value={item.linktext || ""}
-                  onChange={(e) =>
-                    handleChange(index, item.link, e.target.value)
-                  }
+                  onChange={(e) => handleChange(index, e)}
                   className="px-4 py-2 flex-1 bg-white focus:outline-pink-500 rounded-full"
                   type="text"
                   placeholder="Enter link text"
                 />
                 <input
+                  name="link"
                   value={item.link || ""}
-                  onChange={(e) =>
-                    handleChange(index, e.target.value, item.linktext)
-                  }
+                  onChange={(e) => handleChange(index, e)}
                   className="px-4 py-2 flex-1 bg-white focus:outline-pink-500 rounded-full"
                   type="text"
                   placeholder="Enter link"
@@ -145,7 +145,8 @@ const Generate = () => {
 
       {/* Right Column */}
       <div className="hidden md:flex w-full h-screen bg-[#E9C0E9]">
-        <img width={320}
+        <img
+          width={320}
           className="object-contain mx-auto"
           src="/generate.png"
           alt="Generate your links"
