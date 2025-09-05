@@ -1,31 +1,31 @@
-"use client"
-import React, { useState } from "react"
-import { ToastContainer, toast } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
-import { useSearchParams } from "next/navigation"
-import Image from "next/image"
+'use client';
+
+import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 const Generate = () => {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
-  const [links, setLinks] = useState([{ link: "", linktext: "" }])
-  const [handle, setHandle] = useState(searchParams.get("handle") || "")
-  const [pic, setPic] = useState("")
-  const [desc, setDesc] = useState("")
+  const [links, setLinks] = useState([{ link: "", linktext: "" }]);
+  const [handle, setHandle] = useState(searchParams.get("handle") || "");
+  const [pic, setPic] = useState("");
+  const [desc, setDesc] = useState("");
 
-  // Corrected handleChange function
   const handleChange = (index, e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setLinks((initialLinks) => {
-      const newLinks = [...initialLinks]
-      newLinks[index][name] = value
-      return newLinks
-    })
-  }
+      const newLinks = [...initialLinks];
+      newLinks[index][name] = value;
+      return newLinks;
+    });
+  };
 
   const addLink = () => {
-    setLinks([...links, { link: "", linktext: "" }])
-  }
+    setLinks([...links, { link: "", linktext: "" }]);
+  };
 
   const submitLinks = async () => {
     try {
@@ -38,23 +38,23 @@ const Generate = () => {
           pic,
           desc,
         }),
-      })
+      });
 
-      const result = await res.json()
+      const result = await res.json();
 
       if (result.success) {
-        toast.success(result.message)
-        setLinks([{ link: "", linktext: "" }])
-        setPic("")
-        setHandle("")
-        setDesc("")
+        toast.success(result.message);
+        setLinks([{ link: "", linktext: "" }]);
+        setPic("");
+        setHandle("");
+        setDesc("");
       } else {
-        toast.error(result.message)
+        toast.error(result.message);
       }
     } catch (err) {
-      toast.error("Something went wrong!")
+      toast.error("Something went wrong!");
     }
-  }
+  };
 
   return (
     <div className="bg-[#E9C0E9] min-h-screen grid grid-cols-1 md:grid-cols-2">
@@ -156,7 +156,7 @@ const Generate = () => {
       </div>
       <ToastContainer />
     </div>
-  )
-}
+  );
+};
 
-export default Generate
+export default Generate;
