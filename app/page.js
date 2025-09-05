@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 export default function Home() {
   const router = useRouter()
@@ -54,7 +55,9 @@ export default function Home() {
 
         {/* Right Image (hidden on mobile) */}
         <div className="hidden md:flex items-center justify-center">
-          <img
+          <Image
+            width={300}
+            height={300}
             src="/home.png"
             alt="homepage image"
             className="w-full max-w-md object-contain"
