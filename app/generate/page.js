@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
+export const dynamic = 'force-dynamic';
+
 const Generate = () => {
   const searchParams = useSearchParams();
 
@@ -162,3 +164,4 @@ const Generate = () => {
 };
 
 export default Generate;
+
