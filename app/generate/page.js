@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { useSearchParams } from "next/navigation"
+import Image from "next/image"
 
 const Generate = () => {
   const searchParams = useSearchParams()
@@ -136,7 +137,7 @@ const Generate = () => {
                 onClick={submitLinks}
                 className="disabled:bg-slate-500 cursor-pointer p-2 px-5 w-fit my-4 bg-slate-900 text-white font-bold rounded-3xl"
               >
-                Create your BitTree
+                Create your Linktree
               </button>
             </div>
           </div>
@@ -145,8 +146,9 @@ const Generate = () => {
 
       {/* Right Column */}
       <div className="hidden md:flex w-full h-screen bg-[#E9C0E9]">
-        <img
+        <Image
           width={320}
+          height={100}
           className="object-contain mx-auto"
           src="/generate.png"
           alt="Generate your links"
